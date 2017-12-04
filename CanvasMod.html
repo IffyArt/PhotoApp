@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML to Image</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <style>
+    .app {
+      background-color: rgb(41, 175, 36);
+      width: 22%;
+      float: left;
+      margin: 1.5%;
+    }
+    .conter{
+      max-width: 80%;
+      width: 100%;
+      float: left;
+      margin-left: 10%;
+      display: block;
+      background-color: #feeded;
+    }
+    @media only screen and (max-width: 768px) {
+      #app {
+        background-color: rgb(85, 7, 59);
+        width: 45%;
+        margin: 2.5%;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      #app {
+        width: 98%;
+        margin: 1%;
+        background-color: rgb(168, 38, 125);
+      }
+    }
+
+    @media only screen and (max-width: 320px) {
+      #app {
+        background-color: rgb(107, 161, 35);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <td colspan="2">
+          <img src="poster/one.png" width="400" alt="">
+      </td>
+    </tr>
+    <tr>
+      <td>姓名</td>
+      <td>
+        <input value="Darkthread">
+      </td>
+    </tr>
+    <tr>
+      <td>積分</td>
+      <td>
+        <input value="9999">
+      </td>
+    </tr>
+    
+  </table>
+  <hr />
+  <input type="button" value="轉為圖檔" />
+  <a></a>
+  <fieldset>
+    <legend>圖檔</legend>
+    <div>
+    </div>
+  </fieldset>
+
+  <a id="auto"></a>
+  <div class="conter">
+    <div class="app">
+      {{ message }}
+    </div>
+    <div class="app app2">
+      {{ message }}
+    </div>
+    <div class="app">
+      {{ message }}
+    </div>
+    <div class="app">
+      {{ message }}
+    </div>
+    <div class="app">
+      {{ message }}
+    </div>
+    <div class="app">
+      {{ message }}
+    </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '.app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+
+    var app2 = new Vue({
+      el: '.app2',
+      data: {
+        message: 'Hello Vue2!'
+      }
+    })
+  </script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
+  <script src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+  <script>
+    $(":button").click(function () {
+      html2canvas($("table")[0], {
+        onrendered: function (canvas) {
+          var $div = $("fieldset div");
+
+          $div.empty();
+
+          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
